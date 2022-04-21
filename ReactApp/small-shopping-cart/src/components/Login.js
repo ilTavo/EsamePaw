@@ -51,7 +51,7 @@ export default function Login() {
       localStorage.setItem('note', response.data.note);
       localStorage.setItem('reset', response.data.fine_prenot);
       localStorage.setItem('nome', response.data.user_id);
-      localStorage.setItem('staff', response.data.is_staff);
+      localStorage.setItem('staff', response.data.staff);
       //console.log ('local token  '+localStorage.getItem('token')+'-nroOmb-'+response.data.omb+'finepreno'+response.data.fine_prenot+'nome'+response.data.user_id);
       window.location.reload(true);
     }) .catch(function(error) {

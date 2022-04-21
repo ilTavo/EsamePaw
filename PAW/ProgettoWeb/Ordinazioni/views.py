@@ -130,8 +130,8 @@ class OrdinazioneDetails(APIView):
         return Response(serializer.data)
 
     def put(self, request, id):
-        article = self.get_object(id)
-        serializer = OrdinazioneSerializer(article, data=request.data)
+        ordine = self.get_object(id)
+        serializer = OrdinazioneSerializer(ordine, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

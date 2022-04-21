@@ -11,7 +11,7 @@ class ProdottoSerializer(serializers.ModelSerializer):
 class OrdinazioneSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ordinazione
-        fields = ['data', 'nome_prenot', 'carrello','totale']
+        fields = ['id','data', 'accettazione', 'consegnato','nome_prenot', 'carrello','totale']
         
 
      

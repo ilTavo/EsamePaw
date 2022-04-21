@@ -1,9 +1,11 @@
 import Header from './components/Header';
 import Main from './components/Main';
 import Login from './components/Login';
-
 import data from './data';
 import { useState } from 'react';
+import Fab from '@mui/material/Fab';
+import LogoutIcon from '@mui/icons-material/Logout';
+import Dasboard from './components/Dashboard';
 function App() {
   const { products } = data;
   const [cartItems, setCartItems] = useState([]);
@@ -32,35 +34,36 @@ function App() {
     }
     
   };
+  const fabStyle = {
+    position: 'fixed',
+    bottom: 16,
+    left: 16,
+  };
   const today = new Date();
     var year =  today.getFullYear();
     var month = ("0" + (today.getMonth() + 1)).slice(-2);
     var date = ("0" + today.getDate()).slice(-2);
     var oggi= year+"-"+month+"-"+date;       
     localStorage.setItem('oggi', oggi);
-  if(localStorage.getItem('token') && localStorage.getItem('reset')>oggi){
+  
   return (
     <div className="App">      
       <div className="row">
-        <Main products={products} onAdd={onAdd} ></Main>
-        
-        <Header countCartItems={cartItems.length}
-        cartItems={cartItems} 
-        onAdd={onAdd}
-        onRemove={onRemove}></Header>
-      </div>
+      {localStorage.getItem('token') && localStorage.getItem('reset')>oggi && localStorage.getItem('staff')=="false" ? <><Main products={products} onAdd={onAdd}></Main><Header countCartItems={cartItems.length}
+          cartItems={cartItems}
+          onAdd={onAdd}
+          onRemove={onRemove}></Header></> : localStorage.getItem('staff')=="true" ? <Dasboard></Dasboard> : <Login></Login>}
+  </div>
+      <Fab sx={fabStyle} onClick ={logout}>
+            <LogoutIcon></LogoutIcon>
+          </Fab>
     </div>
-  );
-  } else {
-    return (
-      <div className="App">
-        
-        <div className="row">
-          <Login></Login>
-      </div>
-      </div>
-    );
+   
+  )
+  async function logout() {
+    localStorage.clear();
+    window.location.reload(true);
+
   }
 }
-
-export default App;
+export default App

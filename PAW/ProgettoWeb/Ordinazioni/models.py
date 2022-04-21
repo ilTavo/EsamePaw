@@ -17,6 +17,8 @@ class Prodotto(models.Model):
 
 class Ordinazione(models.Model):
     data = models.DateTimeField()
+    accettazione = models.BooleanField()
+    consegnato = models.BooleanField(default=False)
     nome_prenot = models.CharField(max_length=153)
     totale = models.DecimalField(max_digits=4, decimal_places=2)   
     carrello = ArrayField(

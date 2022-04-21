@@ -44,6 +44,8 @@ class CustomAuthToken(ObtainAuthToken):
             'token': token.key,
             'user_id': user.username,
             'fine_prenot':ombrellone.data_reset,
-            'note':ombrellone.note
+            'note':ombrellone.note,
+            'staff':user.is_staff,
+            'active':user.is_active
             
         })

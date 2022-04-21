@@ -33,18 +33,18 @@ export default function Send(props) {
     var articoli=[];
     /*##### PER OGNI COMPONENTE DEL CARRELLO AGGIUNGO AL RISPETTIVO INDICE LA COMBO NOME PREZZO ALL'ARRAY CORRISPONDENTE ###*/
     cartItems.map((item,i) => (
-      articoli[i]= item.nome_prod+"-"+item.qty      
+      articoli[i]= item.nome_prod+" "+item.qty  
      ));
     function invia() {
-    var res;    
     axios.post('http://127.0.0.1:8000/ordinazioni/', { 
         data: today.getFullYear()+"-"+month+"-"+date+"T"+currentHours+":"+today.getMinutes()+":00Z",       
         nome_prenot: localStorage.getItem('nome'),
+        accettazione:false,
+        consegnato:false,
         carrello: articoli,
         totale: totalPrice,
     })
       .then(function (response) {
-          res=response;
         console.log(response);
         setSend(true);
         setTimeout(function(){
